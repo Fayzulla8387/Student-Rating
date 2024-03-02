@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+//use Psy\Util\Str;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -42,7 +44,7 @@ class StudentController extends Controller
         $user->first_name = $request->firstname;
         $user->last_name = $request->lastname;
         $user->birth_date = $request->birth_date;
-        $user->email = $request->firstname.'@gmail.com';
+        $user->email = Str::lower($request->firstname).'@gmail.com';
         $user->password = Hash::make($request->passport);
         $user->passport = $request->passport;
         $user->group_id = $request->group_id;
