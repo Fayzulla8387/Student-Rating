@@ -5,18 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Stipendiya;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\StipendiyaRepo;
 
 class StipendiyaController extends Controller
 {
+   private StipendiyaRepo $stipendiya;
+    public function __construct(StipendiyaRepo $stipendiya)
+    {
+         $this->stipendiya = $stipendiya;
+    }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        $stipendiyas = Stipendiya::where('user_id', Auth::user()->id)->get();
+        $stipendiyas = $this->stipendiya->getAll();
+
+
+
         return view('admin.stipendiya.index', compact('stipendiyas'));
+
     }
 
     /**

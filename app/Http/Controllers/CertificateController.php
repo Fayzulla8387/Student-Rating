@@ -40,6 +40,7 @@ class CertificateController extends Controller
         $file = time().'.'.$request->image->extension();
         $path = "images/certificate/";
         $request->image->move(public_path($path), $file);
+
         $certificate = new Certificate();
         $certificate->user_id = Auth::id();
         $certificate->name = $request->name;

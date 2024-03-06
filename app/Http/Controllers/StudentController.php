@@ -45,7 +45,8 @@ class StudentController extends Controller
         $user->last_name = $request->lastname;
         $user->birth_date = $request->birth_date;
         $user->email = Str::lower($request->firstname).'@gmail.com';
-        $user->password = Hash::make($request->passport);
+        $pasword = Str::lower($request->passport);
+        $user->password =Hash::make($pasword);
         $user->passport = $request->passport;
         $user->group_id = $request->group_id;
         $user->role = "student";
